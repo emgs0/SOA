@@ -1,0 +1,55 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://bank.com" xmlns:tns="http://bank.com">
+	<xs:element name="requestBank">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="disponibilidad" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="responseBank">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="exito" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+<!-- 
+	/**
+ * VerificarServiceSkeleton.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT)
+ */
+package com.Bank;
+
+import com.Bank.ResponseBankDocument.ResponseBank;
+
+/**
+ *  VerificarServiceSkeleton java skeleton for the axisService
+ */
+public class VerificarServiceImpl extends VerificarServiceSkeleton{
+    /**
+     * Auto generated method signature
+     *
+     * @param requestBank
+     * @return responseBank
+     */
+    
+    public ResponseBankDocument verificarOperation(
+        RequestBankDocument requestBank) {
+        ResponseBankDocument doc= ResponseBankDocument.Factory.newInstance();
+        ResponseBank response = doc.addNewResponseBank();
+        double aleatorio =  Math.random()*100;
+        int rand = (int) aleatorio;
+        if(rand<=15) {
+            response.setExito(false);
+        }else {
+            response.setExito(true);
+        }
+        
+        return doc;
+    }
+}
+
+-->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+    xmlns:tns="http://emgs.com" targetNamespace="http://emgs.com">
+
+    <xs:element name="requestPalindromo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="palabra" type="xs:string" maxOcurrs="1"/>
+            </xs:sequence>
+        </xs:complexType>   
+    </xs:element>
+
+    <xs:element name="responsePalindromo">        <!-- elemento respuesta = response -->
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="respuesta" type="xs:string" maxOcurrs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

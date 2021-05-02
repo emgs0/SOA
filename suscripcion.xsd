@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--GARZA SANCHEZ EDUARDO MANUEL SOA-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+xmlns:tns="http://foro.com" targetNamespace="http://foro.com">
+    
+    <xs:element name="suscripcion" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="tns:email"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="foro"> <!-- elemento respuesta = response -->
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tema" style="string" minOcurrs="1" maxOcurrs="10">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fecha" type="xs:dateTime"/>
+                            <xs:element name="noParticipantes" type="xs:int">
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="email">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^\.]+\..+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

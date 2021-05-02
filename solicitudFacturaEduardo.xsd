@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--GARZA SANCHEZ EDUARDO MANUEL SOA puse emgs para identificar iniciales personales en tns-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+xmlns:tns="http://emgsfactura.com" targetNamespace="http://emgsfactura.com">
+    
+    <xs:element name="solicitudFacturaEduardo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Garza">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rfc" type="tns:rfc" maxOcurrs="1"/>
+                            <xs:element name="domicilio" maxOcurrs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="calle" type="xs:string" maxOcurrs="1"/>
+                                        <xs:element name="numero" type="xs:string" maxOcurrs="1"/>
+                                        <xs:element name="cp" type="tns:cp" maxOcurrs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element> 
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="responseEduardo"> <!-- elemento respuesta = response -->
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sanchez" maxOcurrs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="id" maxOcurrs="1" type="xs:string"/>
+                            <xs:element name="concepto" minOcurrs="1" maxOcurrs="3" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="rfc">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{4}+[0-9]{4}+[A-z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="cp">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

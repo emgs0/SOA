@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--GARZA SANCHEZ EDUARDO MANUEL SOA puse emgs para identificar iniciales personales en tns-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+xmlns:tns="http://iniciales.com" targetNamespace="http://iniciales.com">
+    
+    <xs:element name="req_Eduardo">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="apellidoPaterno" type="xs:string" maxOcurrs="1"/>
+                                        <xs:element name="apellidoMaterno" type="xs:string" maxOcurrs="1"/>
+                                        <xs:element name="nombres" type="xs:string" maxOcurrs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+    </xs:element>
+
+    <xs:element name="resp_Eduardo"> <!-- elemento respuesta = response -->
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="iniciales" maxOcurrs="1" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+    </xs:element>
+
+</xs:schema>

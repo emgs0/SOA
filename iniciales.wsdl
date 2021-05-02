@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://iniciales.com" 
+    targetNamespace="http://iniciales.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://iniciales.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="iniciales.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ObtenerInicialesMessageRequest">
+        <wsdl:part name="parameter" element="tns:req_Eduardo"/>
+    </wsdl:message>
+    <wsdl:message name="ObtenerInicialesMessageResponse">
+        <wsdl:part name="parameter" element="tns:resp_Eduardo"/>
+    </wsdl:message>
+    <wsdl:portType name="ObtenerInicialesPortType">
+        <wsdl:operation name="ObtenerInicialesOperation">
+            <wsdl:input message="tns:ObtenerInicialesMessageRequest"/>
+            <wsdl:output message="tns:ObtenerInicialesMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ObtenerInicialesBinding" type="tns:ObtenerInicialesPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ObtenerInicialesOperation">
+            <soap:operation soapAction="http://iniciales.com/ObtenerInicialesOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ObtenerInicialesService">
+        <wsdl:port name="ObtenerInicialesPort" binding="tns:ObtenerInicialesBinding">
+            <soap:address location="http://localhost:8080/ObtenerInicialesService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

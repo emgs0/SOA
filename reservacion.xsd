@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Eduardo Manuel Garza Sanchez-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+xmlns:tns="http://reserva.com" targetNamespace="http://reserva.com">
+
+    <xs:element name="reservacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nombre" type="xs:string"/>
+                <xs:element name="RFC" type="xs:string"/>
+                <xs:element name="domicilio">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="calle" type="xs:string" maxOcurrs="1"/>
+                            <xs:element name="cp" type="tns:cp" maxOcurrs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="codigoReservacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" style="xs:int" maxOcurrs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="cp">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

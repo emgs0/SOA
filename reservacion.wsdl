@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://reserva.com" 
+    targetNamespace="http://reserva.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://reserva.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="reservacion.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ReservarMessageRequest">
+        <wsdl:part name="parameter" element="tns:reservacion"/>
+    </wsdl:message>
+    <wsdl:message name="ReservarMessageResponse">
+        <wsdl:part name="parameter" element="tns:codigoReservacion"/>
+    </wsdl:message>
+    <wsdl:portType name="ReservarPortType">
+        <wsdl:operation name="ReservarOperation">
+            <wsdl:input message="tns:ReservarMessageRequest"/>
+            <wsdl:output message="tns:ReservarMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ReservarBinding" type="tns:ReservarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ReservarOperation">
+            <soap:operation soapAction="http://reserva.com/ReservarOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ReservarService">
+        <wsdl:port name="ReservarPort" binding="tns:ReservarBinding">
+            <soap:address location="http://localhost:8081/ReservarService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--GARZA SANCHEZ EDUARDO MANUEL SOA puse emgs para identificar iniciales personales en tns-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+    xmlns:tns="http://conversor.temperatura.com" targetNamespace="http://conversor.temperatura.com">
+
+    <xs:element name="request">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="gradosCentigrados" type="xs:double" maxOcurrs="1"/>
+            </xs:sequence>
+        </xs:complexType>   
+    </xs:element>
+
+    <xs:element name="response">        <!-- elemento respuesta = response -->
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="gradosFarenheit" type="xs:double" maxOcurrs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

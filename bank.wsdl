@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://bank.com" 
+    targetNamespace="http://bank.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://bank.com" elementFormDefault="qualified">
+            <xs:include  schemaLocation="Bank.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ConsultarMessageRequest">
+        <wsdl:part name="parameter" element="tns:requestBank"/>
+    </wsdl:message>
+    <wsdl:message name="ConsultarMessageResponse">
+        <wsdl:part name="parameter" element="tns:responseBank"/>
+    </wsdl:message>
+    <wsdl:portType name="ConsultarPortType">
+        <wsdl:operation name="ConsultarOperation">
+            <wsdl:input message="tns:ConsultarMessageRequest"/>
+            <wsdl:output message="tns:ConsultarMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ConsultarBinding" type="tns:ConsultarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ConsultarOperation">
+            <soap:operation soapAction="http://bank.com/ConsultarOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ConsultarService">
+        <wsdl:port name="ConsultarPort" binding="tns:ConsultarBinding">
+            <soap:address location="http://localhost:8080/ConsultarService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

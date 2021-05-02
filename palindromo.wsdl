@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://emgs.com" 
+    targetNamespace="http://emgs.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://emgs.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="palindromo.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="AnalizarMessageRequest">
+        <wsdl:part name="parameter" element="tns:requestPalindromo"/>
+    </wsdl:message>
+    <wsdl:message name="AnalizarMessageResponse">
+        <wsdl:part name="parameter" element="tns:responsePalindromo"/>
+    </wsdl:message>
+    <wsdl:portType name="AnalizarPortType">
+        <wsdl:operation name="AnalizarOperation">
+            <wsdl:input message="tns:AnalizarMessageRequest"/>
+            <wsdl:output message="tns:AnalizarMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AnalizarBinding" type="tns:AnalizarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="AnalizarOperation">
+            <soap:operation soapAction="http://emgs.com/AnalizarOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AnalizarService">
+        <wsdl:port name="AnalizarPort" binding="tns:AnalizarBinding">
+            <soap:address location="http://localhost:8080/AnalizarService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

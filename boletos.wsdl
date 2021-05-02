@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://boletos.com" targetNamespace="http://boletos.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://boletos.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="boletos.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ReservarboletosMessageRequest">
+        <wsdl:part name="parameter" element="tns:boleto"/>
+    </wsdl:message>
+    <wsdl:message name="ReservarboletosMessageResponse">
+        <wsdl:part name="parameter" element="tns:respuestaBoleto"/>
+    </wsdl:message>
+    <wsdl:portType name="ReservarboletosPortType">
+        <wsdl:operation name="ReservarboletosOperation">
+            <wsdl:input message="tns:ReservarboletosMessageRequest"/>
+            <wsdl:output message="tns:ReservarboletosMessageResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultarboletosOperation">
+            <wsdl:input message="tns:ReservarboletosMessageRequest"/>
+            <wsdl:output message="tns:ReservarboletosMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ReservarboletosBinding" type="tns:ReservarboletosPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ReservarboletosOperation">
+            <soap:operation soapAction="http://boletos.com/ReservarboletosOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ConsultarboletosOperation">
+            <soap:operation soapAction="http://boletos.com/ConsultarboletosOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ReservarboletosService">
+        <wsdl:port name="ReservarboletosPort" binding="tns:ReservarboletosBinding">
+            <soap:address location="http://localhost:8080/ReservarboletosService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

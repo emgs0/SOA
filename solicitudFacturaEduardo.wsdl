@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://emgsfactura.com" 
+    targetNamespace="http://emgsfactura.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://emgsfactura.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="solicitudFacturaEduardo.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="FacturarMessageRequest">
+        <wsdl:part name="parameter" element="tns:solicitudFacturaEduardo"/>
+    </wsdl:message>
+    <wsdl:message name="FacturarMessageResponse">
+        <wsdl:part name="parameter" element="tns:responseEduardo"/>
+    </wsdl:message>
+    <wsdl:portType name="FacturarPortType">
+        <wsdl:operation name="FacturarOperation">
+            <wsdl:input message="tns:FacturarMessageRequest"/>
+            <wsdl:output message="tns:FacturarMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="FacturarBinding" type="tns:FacturarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="FacturarOperation">
+            <soap:operation soapAction="http://emgsfactura.com/FacturarOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="FacturarService">
+        <wsdl:port name="FacturarPort" binding="tns:FacturarBinding">
+            <soap:address location="http://localhost:8081/FacturarService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

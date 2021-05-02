@@ -1,0 +1,14 @@
+<!-- Realiza un mock service en soap ui con el siguiente request y response. -->
+
+<reservacion>
+	<nombre></nombre>
+	<RFC></RFC>
+	<domicilio>
+		<calle></calle>
+		<cp>76000</cp> <!-- validar por expresión regular exactamente 5 dígitos -->
+	</domicilio>
+</reservacion>
+
+<codigoReservacion>
+	<id>32423</id>
+</codigoReservacion>

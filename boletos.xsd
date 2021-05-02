@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:tns="http://boletos.com" targetNamespace="http://boletos.com">
+	<xs:element name="boleto">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="origen" type="xs:string" />
+				<xs:element name="destino" type="xs:string"/>
+                <xs:element name="pasajero" type="xs:string"/>
+                <xs:element name="costo" type="xs:double"/>
+                <xs:element name="fecha" type="xs:string"/>	
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="respuestaBoleto"> <!-- elemento respuesta = response -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="disponibilidad" type="xs:int" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://foro.com" 
+    targetNamespace="http://foro.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://foro.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="suscripcion.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="SuscribirMessageRequest">
+        <wsdl:part name="parameter" element="tns:suscripcion"/>
+    </wsdl:message>
+    <wsdl:message name="SuscribirMessageResponse">
+        <wsdl:part name="parameter" element="tns:foro"/>
+    </wsdl:message>
+    <wsdl:portType name="SuscribirPortType">
+        <wsdl:operation name="SuscribirOperation">
+            <wsdl:input message="tns:SuscribirMessageRequest"/>
+            <wsdl:output message="tns:SuscribirMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SuscribirBinding" type="tns:SuscribirPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="SuscribirOperation">
+            <soap:operation soapAction="http://foro.com/SuscribirOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SuscribirService">
+        <wsdl:port name="SuscribirPort" binding="tns:SuscribirBinding">
+            <soap:address location="No Target Adress"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

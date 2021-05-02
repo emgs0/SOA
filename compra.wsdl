@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://compra.com" 
+    targetNamespace="http://compra.com">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://compra.com" elementFormDefault="qualified">
+            <xs:include schemaLocation="compra.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ComprarMessageRequest">
+        <wsdl:part name="parameter" element="tns:compraEduardo"/>
+    </wsdl:message>
+    <wsdl:message name="ComprarMessageResponse">
+        <wsdl:part name="parameter" element="tns:reciboGarza"/>
+    </wsdl:message>
+    <wsdl:portType name="ComprarPortType">
+        <wsdl:operation name="ComprarOperation">
+            <wsdl:input message="tns:ComprarMessageRequest"/>
+            <wsdl:output message="tns:ComprarMessageResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ComprarBinding" type="tns:ComprarPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ComprarOperation">
+            <soap:operation soapAction="http://compra.com/ComprarOperation"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ComprarService">
+        <wsdl:port name="ComprarPort" binding="tns:ComprarBinding">
+            <soap:address location="http://localhost:8080/ComprarService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
